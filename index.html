@@ -3,138 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarshi Shandilya - I am the Best</title>
+    <title>For Vania</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        header {
-            background-color: #6a0dad;
-            color: white;
-            padding: 1em 0;
-            text-align: center;
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
+
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2em;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
         }
-        h1, h2 {
-            color: #6a0dad;
-        }
-        .about, .blog, .media {
-            margin-bottom: 2em;
-        }
-        .post-form, .upload-form {
-            background-color: #ffffff;
-            padding: 1em;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .post-form input, .post-form textarea, .upload-form input {
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 0.5em;
-            margin-bottom: 1em;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        .post-form button, .upload-form button {
-            background-color: #6a0dad;
-            color: white;
-            padding: 0.5em 1em;
-            border: none;
-            border-radius: 4px;
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .content {
+            max-width: 500px;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #c9a961;
+            text-transform: uppercase;
+        }
+
+        .section-text {
+            font-size: 1.25rem;
+            line-height: 2;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            color: #d4d4d4;
+            font-style: italic;
+        }
+
+        .button {
+            background: transparent;
+            border: 1px solid #c9a961;
+            color: #c9a961;
+            padding: 1.25rem 4rem;
+            font-size: 1rem;
             cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            text-transform: uppercase;
+            font-weight: 400;
         }
-        .post-form button:hover, .upload-form button:hover {
-            background-color: #550b8a;
+
+        .button:hover {
+            background: rgba(201, 169, 97, 0.1);
+            border-color: #e5c888;
+            color: #e5c888;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(201, 169, 97, 0.2);
         }
-        .posts, .uploads {
-            background-color: #ffffff;
-            padding: 1em;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        .progress-dots {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 4rem;
+            justify-content: center;
         }
-        .post, .upload {
-            border-bottom: 1px solid #ddd;
-            padding: 1em 0;
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s;
         }
-        .post:last-child, .upload:last-child {
-            border-bottom: none;
+
+        .dot.active {
+            background: #c9a961;
+            width: 32px;
+            border-radius: 3px;
+        }
+
+        .proposal-section {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .heart-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 3rem;
+            stroke: #c9a961;
+            stroke-width: 1.5;
+            fill: none;
+            animation: heartbeat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .proposal-title {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #c9a961;
+            text-transform: uppercase;
+        }
+
+        .proposal-question {
+            font-size: 1.75rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #d4d4d4;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .yes-button {
+            background: linear-gradient(135deg, #c9a961 0%, #b8955a 100%);
+            border: none;
+            color: #0a0a0a;
+            padding: 1.5rem 4rem;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .yes-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(201, 169, 97, 0.4);
+            background: linear-gradient(135deg, #e5c888 0%, #c9a961 100%);
+        }
+
+        .maybe-button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 1.25rem 4rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .maybe-button:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .signature {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 3rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-1 {
+            top: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow-2 {
+            bottom: -200px;
+            right: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 3px;
+            }
+            
+            .proposal-title {
+                font-size: 2.75rem;
+                letter-spacing: 4px;
+            }
+            
+            .section-text {
+                font-size: 1.125rem;
+            }
+            
+            .proposal-question {
+                font-size: 1.5rem;
+            }
+
+            .button, .yes-button, .maybe-button {
+                padding: 1.25rem 3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Aarshi Shandilya</h1>
-        <p>I am the Best</p>
-    </header>
+    <div class="stars" id="stars"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    
     <div class="container">
-        <section class="about">
-            <h2>About Me</h2>
-            <p>Hello! I am Aarshi Shandilya, and welcome to my personal webpage. I am passionate about many things and always strive to be the best in everything I do.</p>
-        </section>
-        <section class="blog">
-            <h2>Blog</h2>
-            <div class="post-form">
-                <h3>Post a Blog</h3>
-                <form id="postForm">
-                    <input type="text" id="postTitle" placeholder="Title" required>
-                    <textarea id="postContent" placeholder="Content" required></textarea>
-                    <button type="submit">Post</button>
-                </form>
+        <div class="content" id="mainContent">
+            <h1 class="section-title" id="sectionTitle">Vania</h1>
+            <p class="section-text" id="sectionText">There's something I've wanted to tell you for quite some time now.</p>
+            <button class="button" onclick="nextSection()">
+                <span id="buttonText">Continue</span>
+            </button>
+            <div class="progress-dots" id="progressDots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
-            <div class="posts" id="posts"></div>
-        </section>
-        <section class="media">
-            <h2>Media</h2>
-            <div class="upload-form">
-                <h3>Upload Media</h3>
-                <form id="uploadForm">
-                    <input type="file" id="mediaFile" required>
-                    <button type="submit">Upload</button>
-                </form>
-            </div>
-            <div class="uploads" id="uploads"></div>
-        </section>
-    </div>
-    <script>
-        document.getElementById('postForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const title = document.getElementById('postTitle').value;
-            const content = document.getElementById('postContent').value;
-            const postsDiv = document.getElementById('posts');
-            const postDiv = document.createElement('div');
-            postDiv.classList.add('post');
-            postDiv.innerHTML = `<h4>${title}</h4><p>${content}</p>`;
-            postsDiv.appendChild(postDiv);
-            document.getElementById('postForm').reset();
-        });
+        </div>
 
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const fileInput = document.getElementById('mediaFile');
-            const file = fileInput.files[0];
-            const uploadsDiv = document.getElementById('uploads');
-            const uploadDiv = document.createElement('div');
-            uploadDiv.classList.add('upload');
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const mediaElement = document.createElement(file.type.startsWith('image/') ? 'img' : 'video');
-                    mediaElement.src = e.target.result;
-                    mediaElement.controls = true;
-                    uploadDiv.appendChild(mediaElement);
-                    uploadsDiv.appendChild(uploadDiv);
-                };
-                reader.readAsDataURL(file);
+        <div class="content hidden" id="proposalContent">
+            <div class="proposal-section">
+                <svg class="heart-icon" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                
+                <h1 class="proposal-title">Vania</h1>
+                <p class="proposal-question">Will you be my girlfriend?</p>
+                
+                <div class="button-group">
+                    <button class="yes-button" onclick="handleYes()">NO</button>
+                    <button class="maybe-button" onclick="handleMaybe(this)">Nhi</button>
+                </div>
+                
+                <p class="signature">From someone who's admired you since Little Flower</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = [
+            {
+                title: "Vania",
+                text: "There's something I've wanted to tell you for quite some time now."
+            },
+            {
+                title: "Little Flower",
+                text: "That's where it all began. Even in play school, there was something about you that I couldn't quite explain."
+            },
+            {
+                title: "Apeejay",
+                text: "Being in the same class with you... those were days I'll always cherish. Every shared moment, every conversation."
+            },
+            {
+                title: "Today",
+                text: "It's been 3.5 years since we passed out. Time has passed, but what I feel for you has only grown clearer."
             }
-            document.getElementById('uploadForm').reset();
-        });
+        ];
+
+        let currentSection = 0;
+
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function nextSection() {
+            const content = document.getElementById('mainContent');
+            content.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentSection++;
+                
+                if (currentSection < sections.length) {
+                    document.getElementById('sectionTitle').textContent = sections[currentSection].title;
+                    document.getElementById('sectionText').textContent = sections[currentSection].text;
+                    
+                    // Update progress dots
+                    const dots = document.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSection);
+                    });
+                    
+                    content.style.opacity = '1';
+                } else {
+                    document.getElementById('mainContent').classList.add('hidden');
+                    document.getElementById('proposalContent').classList.remove('hidden');
+                }
+            }, 300);
+        }
+
+        function handleYes() {
+            const message = "I Love You Swayam ";
+            const phoneNumber = "919990856672"; // Add your phone number with country code (e.g., "919876543210")
+            
+            if (phoneNumber) {
+                window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            } else {
+                // If no number provided, open WhatsApp with pre-filled message
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        function handleMaybe(button) {
+            const maxX = window.innerWidth - button.offsetWidth - 40;
+            const maxY = window.innerHeight - button.offsetHeight - 40;
+            
+            button.style.position = 'fixed';
+            button.style.left = Math.random() * maxX + 'px';
+            button.style.top = Math.random() * maxY + 'px';
+            button.style.transition = 'all 0.3s ease';
+        }
     </script>
 </body>
 </html>
